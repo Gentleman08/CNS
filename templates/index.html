@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digisign Tool</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-900 text-white font-sans">
+    <div class="min-h-screen flex items-center justify-center px-4">
+      <div class="w-full max-w-3xl p-6 bg-gray-800 rounded-2xl shadow-lg">
+        <div class="text-center mb-8">
+          <img
+            src="https://img.icons8.com/ios-filled/100/ffffff/security-checked.png"
+            class="mx-auto mb-4"
+            alt="Digital Signature Icon"
+          />
+          <h1 class="text-3xl font-bold">Digisign Tool</h1>
+          <p class="text-gray-400">Sign and verify your documents securely</p>
+        </div>
+
+        <!-- Sign Section -->
+        <div class="bg-gray-700 rounded-xl p-6 mb-6">
+          <div class="flex items-center mb-4">
+            <img
+              src="https://img.icons8.com/ios-filled/50/ffffff/edit-file.png"
+              alt="Sign"
+              class="mr-4"
+            />
+            <h2 class="text-xl font-semibold">Sign a Document</h2>
+          </div>
+          <form
+            action="/sign"
+            method="post"
+            enctype="multipart/form-data"
+            class="space-y-4"
+          >
+            <input
+              type="file"
+              name="file"
+              required
+              class="w-full bg-gray-600 text-white px-4 py-2 rounded-lg border border-gray-500"
+            />
+            <label for="file">Select data file</label>
+            <button
+              type="submit"
+              class="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg font-semibold"
+            >
+              Sign Document
+            </button>
+          </form>
+        </div>
+
+        <!-- Verify Section -->
+        <div class="bg-gray-700 rounded-xl p-6">
+          <div class="flex items-center mb-4">
+            <img
+              src="https://img.icons8.com/ios-filled/50/ffffff/approval.png"
+              alt="Verify"
+              class="mr-4"
+            />
+            <h2 class="text-xl font-semibold">Verify a Document</h2>
+          </div>
+          <form
+            action="/verify"
+            method="post"
+            enctype="multipart/form-data"
+            class="space-y-4"
+          >
+            <input
+              type="file"
+              name="file"
+              required
+              class="w-full bg-gray-600 text-white px-4 py-2 rounded-lg border border-gray-500"
+            />
+            <label for="signature">Select data file</label>
+            <input
+              type="file"
+              name="signature"
+              required
+              id="signature"
+              class="w-full bg-gray-600 text-white px-4 py-2 rounded-lg border border-gray-500"
+            />
+            <label for="file">Select signature</label>
+            <button
+              type="submit"
+              class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-semibold"
+            >
+              Verify Document
+            </button>
+          </form>
+        </div>
+
+        <!-- Verification Result -->
+        {% if result %}
+        <div class="mt-6 bg-gray-700 rounded-xl p-4 text-center">
+          <h3 class="text-lg font-semibold text-green-400">
+            Verification Result:
+          </h3>
+          <p class="text-white">{{ result }}</p>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>
